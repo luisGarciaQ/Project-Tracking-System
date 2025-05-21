@@ -45,5 +45,15 @@ public class ProjectController
     public List<Project> getProjectsByEmployeeId(@PathVariable Long employeeId) {
         return projectService.getProjectsByEmployeeId(employeeId);
     }
+
+    @PutMapping("/{projectId}/assign/{employeeId}")
+    public ResponseEntity<String> assignEmployee(
+            @PathVariable Long projectId,
+            @PathVariable Long employeeId) {
+
+        projectService.assignEmployeeToProject(projectId, employeeId);
+        return ResponseEntity.ok("Employee " + employeeId + " assigned to project " + projectId);
+    }
+
 }
 
